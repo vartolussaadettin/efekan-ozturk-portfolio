@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Efekan Öztürk — Portfolio</title>
+<meta name="description" content="Efekan Öztürk — Software, Network & Technology">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f4ef;
+    color:#050505;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
+
+/* subtle paper texture */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:100;
+    opacity:.025;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* =========================
+   HEADER (BOTTOM FIXED)
+========================= */
+.header{
+    position:fixed;
+    bottom:24px;
+    left:30px;
+    right:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:200;
+    mix-blend-mode:difference;
+}
+
+.name{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.18em;
+    color:#fff;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.nav{
+    display:flex;
+    gap:28px;
+}
+
+.nav a{
+    position:relative;
+    color:#fff;
+    text-decoration:none;
+    font-size:8px;
+    font-weight:500;
+    letter-spacing:.18em;
+}
+
+.nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-7px;
+    height:1px;
+    background:#fff;
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
+}
+
+.nav a:hover::after,
+.nav a.active::after{
+    transform:scaleX(1);
+}
+
+/* Lang Switcher */
+.lang-switcher{
+    display:flex;
+    gap:4px;
+    font-size:8px;
+    letter-spacing:.15em;
+    font-weight:600;
+}
+
+.lang-btn{
+    background:none;
+    border:none;
+    color:#aaa;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:8px;
+    letter-spacing:.15em;
+    padding:0;
+    transition:color .2s ease;
+}
+
+.lang-btn.active{
+    color:#fff;
+    text-decoration:underline;
+    text-underline-offset:3px;
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+    position:relative;
+    width:100%;
+    height:100vh;
+    min-height:600px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.title{
+    position:relative;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.portfolio{
+    position:relative;
+    color:#050505;
+    font-family:Impact,"Arial Narrow Bold","Arial Black",sans-serif;
+    font-size:clamp(8rem,21.5vw,24rem);
+    font-weight:900;
+    line-height:.78;
+    letter-spacing:-.075em;
+    white-space:nowrap;
+    user-select:none;
+    animation:titleIn 1s cubic-bezier(.16,1,.3,1) both;
+}
+
+.signature{
+    position:absolute;
+    z-index:10;
+    left:50%;
+    top:51%;
+    width:78%;
+    transform:translate(-50%,-50%) rotate(-0.2deg);
+    pointer-events:none;
+    user-select:none;
+    animation:signatureIn 1.1s cubic-bezier(.16,1,.3,1) .15s both;
+}
+
+.signature img{
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+@keyframes titleIn{
+    from{opacity:0;transform:translateY(12px) scale(.98)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@keyframes signatureIn{
+    from{opacity:0;transform:translate(-50%,-48%) rotate(-0.2deg)}
+    to{opacity:1;transform:translate(-50%,-50%) rotate(-0.2deg)}
+}
+
+/* hero top tags */
+.hero-top-left,
+.hero-top-right{
+    position:absolute;
+    top:30px;
+    z-index:20;
+    font-size:8px;
+    font-weight:500;
+    letter-spacing:.17em;
+    text-transform:uppercase;
+}
+
+.hero-top-left{left:30px}
+
+.hero-top-right{
+    right:30px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.line{
+    width:38px;
+    height:1px;
+    background:#111;
+}
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+.section{
+    min-height:100vh;
+    padding:150px 7vw 100px;
+    position:relative;
+}
+
+.section-inner{
+    max-width:1250px;
+    margin:auto;
+}
+
+.section-label{
+    font-size:9px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    margin-bottom:35px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.section-label::before{
+    content:"";
+    width:35px;
+    height:1px;
+    background:#111;
+}
+
+.section-title{
+    font-size:clamp(3.6rem,8.5vw,8.5rem);
+    line-height:.88;
+    letter-spacing:-.06em;
+    text-transform:uppercase;
+    font-weight:900;
+}
+
+.section-number{
+    position:absolute;
+    top:150px;
+    right:7vw;
+    font-size:10px;
+    letter-spacing:.15em;
+}
+
+/* =========================
+   ABOUT
+========================= */
+.about{
+    background:#050505;
+    color:#f5f4ef;
+}
+
+.about .section-label::before{
+    background:#f5f4ef;
+}
+
+.about-content{
+    margin-top:70px;
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:8vw;
+    align-items:flex-start;
+}
+
+.about-text-group{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+.about-lead{
+    font-size:clamp(1.5rem,2.8vw,3.2rem);
+    line-height:1.15;
+    letter-spacing:-.03em;
+    font-weight:700;
+    color:#f5f4ef;
+}
+
+.about-body{
+    font-size:clamp(0.95rem,1.15vw,1.25rem);
+    line-height:1.65;
+    letter-spacing:-.01em;
+    color:rgba(245,244,239,.82);
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.about-quote{
+    margin-top:10px;
+    padding-left:18px;
+    border-left:2px solid #f5f4ef;
+    font-size:clamp(0.9rem,1.1vw,1.15rem);
+    line-height:1.55;
+    color:rgba(245,244,239,.65);
+    font-style:italic;
+}
+
+.about-side{
+    border-top:1px solid rgba(245,244,239,.35);
+    padding-top:18px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    padding:16px 0;
+    border-bottom:1px solid rgba(245,244,239,.2);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.info-row span:last-child{
+    opacity:.6;
+}
+
+/* =========================
+   PROJECTS (ACCORDION)
+========================= */
+.projects{
+    background:#f5f4ef;
+}
+
+.project-list{
+    margin-top:90px;
+    border-top:1px solid #111;
+}
+
+.project-item{
+    border-bottom:1px solid #111;
+}
+
+.project{
+    width:100%;
+    background:none;
+    border:none;
+    display:grid;
+    grid-template-columns:90px 1fr auto 30px;
+    align-items:center;
+    gap:30px;
+    min-height:130px;
+    text-decoration:none;
+    color:#050505;
+    text-align:left;
+    cursor:pointer;
+    padding:20px 0;
+    transition:padding .35s ease;
+}
+
+.project:hover{
+    padding-left:25px;
+}
+
+.project-no{
+    font-size:10px;
+    letter-spacing:.15em;
+}
+
+.project-name{
+    font-size:clamp(2rem,4vw,4.5rem);
+    font-weight:800;
+    letter-spacing:-.055em;
+    text-transform:uppercase;
+}
+
+.project-type{
+    font-size:9px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+}
+
+.project-toggle{
+    font-size:16px;
+    font-weight:300;
+    transition:transform .3s ease;
+    text-align:right;
+}
+
+.project-item.open .project-toggle{
+    transform:rotate(45deg);
+}
+
+.project-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s cubic-bezier(.16,1,.3,1), padding .3s ease;
+    padding:0 0 0 120px;
+}
+
+.project-item.open .project-body{
+    max-height:300px;
+    padding:0 0 40px 120px;
+}
+
+.project-desc{
+    font-size:clamp(1rem, 1.3vw, 1.3rem);
+    line-height:1.45;
+    max-width:850px;
+    color:#222;
+    margin-bottom:18px;
+}
+
+.project-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.project-tags span{
+    font-size:8px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    border:1px solid #111;
+    padding:4px 8px;
+}
+
+/* =========================
+   ZER SECTION & LOGO EMBED
+========================= */
+.zer-section{
+    background:#ece9df;
+    color:#050505;
+    border-top:1px solid #111;
+    border-bottom:1px solid #111;
+}
+
+.zer-heading-wrap{
+    margin-bottom:45px;
+}
+
+.zer-title{
+    font-size:clamp(2.6rem, 5.8vw, 5.8rem);
+    font-weight:900;
+    line-height:1.15;
+    letter-spacing:-.05em;
+    text-transform:uppercase;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:16px 24px;
+}
+
+/* Orijinal Logo İçi Yerleşim */
+.zer-logo-img{
+    display:inline-block;
+    height:clamp(44px, 6.2vw, 80px);
+    width:auto;
+    object-fit:contain;
+    vertical-align:middle;
+    transform:translate(8px, 6px); /* Bir tık aşağı ve bir tık sağa */
+    margin-right:8px;
+}
+
+.zer-desc{
+    font-size:clamp(1.05rem, 1.4vw, 1.45rem);
+    line-height:1.65;
+    max-width:920px;
+    color:#1a1a1a;
+}
+
+.zer-desc p{
+    margin-bottom:20px;
+}
+
+.zer-quote{
+    margin-top:32px;
+    padding-top:20px;
+    border-top:1px solid rgba(0, 0, 0, 0.15);
+    font-style:italic;
+    color:#2b2b2b;
+}
+
+@media(max-width:700px){
+    .zer-title{
+        gap:10px 14px;
+        line-height:1.2;
+    }
+    .zer-logo-img{
+        height:clamp(34px, 10vw, 50px);
+        transform:translate(5px, 4px);
+        margin-right:5px;
+    }
+}
+
+/* =========================
+   CONTACT (DARK THEME)
+========================= */
+.contact{
+    min-height:100vh;
+    background:#050505;
+    color:#f5f4ef;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding-bottom:120px;
+}
+
+.contact .section-label::before{
+    background:#f5f4ef;
+}
+
+.contact-title{
+    margin-top:70px;
+    font-size:clamp(4rem,11vw,11rem);
+    line-height:.8;
+    font-weight:900;
+    letter-spacing:-.075em;
+    text-transform:uppercase;
+    color:#f5f4ef;
+}
+
+.contact-email{
+    display:inline-block;
+    margin-top:80px;
+    color:#f5f4ef;
+    text-decoration:none;
+    font-size:clamp(1.2rem,2.5vw,2.5rem);
+    letter-spacing:-.03em;
+    border-bottom:1px solid #f5f4ef;
+    padding-bottom:8px;
+    transition:opacity .2s ease;
+}
+
+.contact-email:hover{
+    opacity:.75;
+}
+
+.contact-footer{
+    margin-top:90px;
+    padding-top:35px;
+    border-top:1px solid rgba(245,244,239,.2);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.contact-copy{
+    font-size:9px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    opacity:.5;
+}
+
+.social-links{
+    display:flex;
+    align-items:center;
+}
+
+.social-links a{
+    color:#f5f4ef;
+    opacity:.8;
+    transition:opacity .25s ease, transform .25s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+}
+
+.social-links a:hover{
+    opacity:1;
+    transform:translateY(-2px);
+}
+
+.social-links svg{
+    width:19px;
+    height:19px;
+    fill:currentColor;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:700px){
+    .header{
+        bottom:16px;
+        left:16px;
+        right:16px;
+    }
+
+    .name{
+        font-size:8px;
+        letter-spacing:.15em;
+    }
+
+    .header-right{
+        gap:14px;
+    }
+
+    .nav{
+        gap:13px;
+    }
+
+    .nav a{
+        font-size:6px;
+        letter-spacing:.10em;
+    }
+
+    .portfolio{
+        font-size:28vw;
+        letter-spacing:-.085em;
+    }
+
+    .signature{
+        width:82%;
+        top:51%;
+    }
+
+    .hero-top-left{
+        left:20px;
+        top:23px;
+        font-size:6px;
+    }
+
+    .hero-top-right{
+        right:20px;
+        top:23px;
+        font-size:6px;
+    }
+
+    .line{width:20px}
+
+    .section{
+        padding:110px 20px 80px;
+    }
+
+    .section-number{
+        top:110px;
+        right:20px;
+    }
+
+    .about-content{
+        margin-top:40px;
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .project-list{
+        margin-top:60px;
+    }
+
+    .project{
+        grid-template-columns:35px 1fr auto;
+        gap:10px;
+        min-height:110px;
+    }
+
+    .project-type{
+        display:none;
+    }
+
+    .project-body{
+        padding:0 0 25px 45px;
+    }
+
+    .project-item.open .project-body{
+        padding:0 0 25px 45px;
+    }
+
+    .project:hover{
+        padding-left:0;
+    }
+
+    .zer-title{
+        gap:8px 12px;
+    }
+
+    .zer-logo-svg{
+        height:clamp(38px, 11vw, 56px);
+    }
+
+    .contact-title{
+        margin-top:50px;
+    }
+
+    .contact-email{
+        margin-top:60px;
+    }
+
+    .contact-footer{
+        margin-top:60px;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+@media(max-width:430px){
+    .nav a:nth-child(3){
+        display:none;
+    }
+
+    .portfolio{
+        font-size:29vw;
+    }
+
+    .signature{
+        width:88%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HOME
+========================= -->
+<section class="hero" id="home">
+
+    <div class="hero-top-left" data-i18n="heroTopLeft">
+        YAZILIM&nbsp;&nbsp; / &nbsp;&nbsp;AĞ&nbsp;&nbsp; / &nbsp;&nbsp;TEKNOLOJİ
+    </div>
+
+    <div class="hero-top-right">
+        <div class="line"></div>
+        <span data-i18n="heroTopRight">TÜRKİYE MERKEZLİ</span>
+    </div>
+
+    <div class="title">
+        <div class="portfolio">
+            PORTFOLIO
+
+            <div class="signature">
+                <img src="signature.png" alt="Efekan Öztürk">
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+<section class="section about" id="about">
+
+    <div class="section-inner">
+
+        <div class="section-label" data-i18n="aboutLabel">
+            Hakkımda
+        </div>
+
+        <div class="section-number">
+            02 / 04
+        </div>
+
+        <h2 class="section-title" data-i18n="aboutTitle">
+            Build.<br>
+            Connect.<br>
+            Solve.
+        </h2>
+
+        <div class="about-content">
+            <div class="about-text-group">
+                <p class="about-lead" data-i18n="aboutLead">
+                    Teknolojiyi sadece geliştirmiyor, hayata geçiriyorum.
+                </p>
+
+                <div class="about-body">
+                    <p data-i18n="aboutP1">
+                        Bir problemi dinlemekle başlarım. İhtiyacı analiz eder, uygulanabilir bir çözüm tasarlar, gerektiğinde yazılımını geliştirir ve sistemi sahada hayata geçiririm. Projenin yalnızca teknik tarafında değil, müşteri iletişimi, çözüm sunumu ve satış sürecinde de aktif rol alırım.
+                    </p>
+
+                    <p data-i18n="aboutP2">
+                        Yazılım geliştirme, network altyapıları ve saha teknolojileri arasında çalışarak; bir sistemin fikir aşamasından kurulumuna, kullanımından ortaya çıkan problemlerin çözümüne kadar uçtan uca sorumluluk almayı hedefliyorum.
+                    </p>
+
+                    <p data-i18n="aboutP3">
+                        Network tarafında TCP/IP, routing, switching, VLAN, VPN ve ağ altyapıları üzerine çalışırken; sahada PDKS, geçiş kontrol, turnike, kamera, VideoWall ve IoT sistemleriyle gerçek problemlere çözüm üretiyorum.
+                    </p>
+                </div>
+
+                <div class="about-quote" data-i18n="aboutQuote">
+                    "Benim için iyi bir çözüm sadece çalışan bir sistem değildir. Doğru problemi çözmeli, sahada çalışmalı, müşterinin ihtiyacını karşılamalı ve sürdürülebilir olmalıdır."
+                </div>
+            </div>
+
+            <div class="about-side">
+                <div class="info-row">
+                    <span data-i18n="infoPhilosophy">Felsefe</span>
+                    <span>Build • Connect • Solve</span>
+                </div>
+                <div class="info-row">
+                    <span data-i18n="infoFocus">Odak</span>
+                    <span data-i18n="infoFocusVal">Yazılım / Ağ / Saha</span>
+                </div>
+                <div class="info-row">
+                    <span data-i18n="infoNetwork">Ağ</span>
+                    <span>Routing / VLAN / VPN</span>
+                </div>
+                <div class="info-row">
+                    <span data-i18n="infoField">Saha &amp; IoT</span>
+                    <span>PDKS / Turnike / VideoWall</span>
+                </div>
+                <div class="info-row">
+                    <span data-i18n="infoBased">Konum</span>
+                    <span data-i18n="infoBasedVal">Türkiye</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS (ACCORDION)
+========================= -->
+<section class="section projects" id="projects">
+
+    <div class="section-inner">
+
+        <div class="section-label" data-i18n="projectsLabel">
+            Seçilmiş İşler
+        </div>
+
+        <div class="section-number">
+            03 / 04
+        </div>
+
+        <h2 class="section-title" data-i18n="projectsTitle">
+            Projelerim & Çalışmalarım
+        </h2>
+
+        <div class="project-list">
+
+            <div class="project-item">
+                <button class="project">
+                    <span class="project-no">01</span>
+                    <span class="project-name">PDKS Systems</span>
+                    <span class="project-type" data-i18n="p1Type">Ağ / IoT</span>
+                    <span class="project-toggle">+</span>
+                </button>
+                <div class="project-body">
+                    <p class="project-desc" data-i18n="p1Desc">
+                        Personel Devam Kontrol (PDKS) sistemleri; yüz tanıma ve kartlı geçiş terminallerinin ağ altyapı yönetimi.
+                    </p>
+                    <div class="project-tags">
+                        <span>Hikvision</span>
+                        <span>wiring</span>
+                        <span>network communication</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <button class="project">
+                    <span class="project-no">02</span>
+                    <span class="project-name">Customer Tracking</span>
+                    <span class="project-type" data-i18n="p2Type">Web Uygulaması</span>
+                    <span class="project-toggle">+</span>
+                </button>
+                <div class="project-body">
+                    <p class="project-desc" data-i18n="p2Desc">
+                        Müşteri kayıtları, işlem geçmişi, randevu ve servis süreçlerini tek panel üzerinden yöneten, işletmelere özel geliştirilen uçtan uca responsive web yönetim platformu.
+                    </p>
+                    <div class="project-tags">
+                        <span>React.js</span>
+                        <span>.NET Core &amp; Entity Framework</span>
+                        <span>MSSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <button class="project">
+                    <span class="project-no">03</span>
+                    <span class="project-name">Network</span>
+                    <span class="project-type" data-i18n="p3Type">Network Infrastructure</span>
+                    <span class="project-toggle">+</span>
+                </button>
+                <div class="project-body">
+                    <p class="project-desc" data-i18n="p3Desc">
+                        Switch, router, VLAN ve IP tabanlı ağ altyapılarının kurulumu ve yönetimi. IoT, PDKS, güvenlik sistemleri ve saha cihazlarının network entegrasyonu ve teknik sorunlarının çözümü.
+                    </p>
+                    <div class="project-tags">
+                        <span>Switching</span>
+                        <span>VLAN</span>
+                        <span>TCP/IP</span>
+                        <span>Network Infrastructure</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <button class="project">
+                    <span class="project-no">04</span>
+                    <span class="project-name">Pre-Sales</span>
+                    <span class="project-type" data-i18n="p4Type">Solution Partner</span>
+                    <span class="project-toggle">+</span>
+                </button>
+                <div class="project-body">
+                    <p class="project-desc" data-i18n="p4Desc">
+                        Müşteri taleplerinin teknik açıdan değerlendirilmesi, uygun ürün ve çözümlerin belirlenmesi, şartname ve teklif süreçlerinin hazırlanması ve satış öncesi teknik süreçlerin takibi. Teknik bilgi ile müşteri ihtiyaçlarını bir araya getirerek çözüm geliştirmeye odaklanıyorum.
+                    </p>
+                    <div class="project-tags">
+                        <span>CCNA</span>
+                        <span>Teklif Süreçleri</span>
+                        <span>Teknik Şartname</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ZER BÖLÜMÜ (ÖZEL SVG LOGO)
+========================= -->
+<section class="section zer-section" id="zer">
+    <div class="section-inner">
+        <div class="section-label" data-i18n="zerLabel">
+            Firma &amp; Saha
+        </div>
+
+        <div class="zer-heading-wrap">
+            <h2 class="zer-title">
+                <span data-i18n="zerPrefix">Efekan Öztürk Bir </span>
+                
+                <!-- Yüklediğin Orijinal ZER Logosu -->
+                <img class="zer-logo-img" src="zer-logo.png" alt="ZER">
+
+                <span data-i18n="zerSuffix">  Çalışanıdır.</span>
+            </h2>
+        </div>
+
+        <div class="zer-desc" data-i18n="zerDesc">
+            <p>
+                Zer Sistem benim için yalnızca çalıştığım bir şirket değil; sahayı, müşteriyi ve teknik problemlerin gerçek dünyadaki karşılığını öğrendiğim bir yolculuğun parçası. Bu ailenin içinde network altyapılarından PDKS ve geçiş kontrol sistemlerine, donanım entegrasyonlarından saha operasyonlarına kadar birçok farklı alanda deneyim kazanıyorum.
+            </p>
+            <p>
+                Her projede yalnızca sistemi kurmayı değil; problemi anlamayı, ihtiyacı doğru analiz etmeyi ve uygulanabilir bir çözüm üretmeyi öğreniyorum. Bazen bir switch'in başında, bazen sahada bir cihazın karşısında, bazen de bir müşterinin ihtiyacını dinlerken aynı hikâyenin farklı bir parçasını oluşturuyorum.
+            </p>
+            <p>
+                Zer Sistem ile olan hikâyem; öğrendikçe sorumluluk aldığım, sahada deneyim kazandığım ve teknik bilgimi gerçek problemlere dönüştürmeyi öğrendiğim bir süreç. Bu yolculuğun beni ileride teknik satış, çözüm geliştirme ve proje yönetimi tarafında daha güçlü bir noktaya taşımasını hedefliyorum.
+            </p>
+            <div class="zer-quote">
+                Bazı insanlar size sadece bir iş imkânı sunar, bazıları ise yolunuzu şekillendirir. ZER Ailesi benim için ikinci grupta; bildiklerini paylaşması, sorumluluk vermesi ve her yeni adımda bana güvenmesi, Zer Sistem'deki yolculuğumun en değerli parçalarından biri. Bu hikâyenin daha başlangıcında olduğumuzu düşünüyor, önümüzde birlikte öğreneceğimiz ve başaracağımız daha çok şey olduğuna inanıyorum.
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+<section class="section contact" id="contact">
+
+    <div class="section-inner" style="width:100%;">
+
+        <div class="section-label" data-i18n="contactLabel">
+            İletişime Geç
+        </div>
+
+        <div class="section-number">
+            04 / 04
+        </div>
+
+        <h2 class="contact-title" data-i18n="contactTitle">
+            Birlikte<br>
+            İnşa Edelim.
+        </h2>
+
+        <div>
+            <a
+                class="contact-email"
+                href="mailto:efekaanozturk2@gmail.com"
+            >
+                efekaanozturk2@gmail.com
+            </a>
+        </div>
+
+        <div class="contact-footer">
+            <div class="contact-copy" data-i18n="contactCopy">
+                © Efekan Öztürk — Tüm Hakları Saklıdır
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/efekan%C3%B6zt%C3%BCrk/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BOTTOM FIXED HEADER
+========================= -->
+<header class="header">
+    <div class="name">EFEKAN ÖZTÜRK</div>
+
+    <div class="header-right">
+        <nav class="nav">
+            <a href="#home" class="active" data-i18n="navHome">ANA SAYFA</a>
+            <a href="#about" data-i18n="navAbout">HAKKIMDA</a>
+            <a href="#projects" data-i18n="navProjects">PROJELER</a>
+            <a href="#zer" data-i18n="navZer">ZER</a>
+            <a href="#contact" data-i18n="navContact">İLETİŞİM</a>
+        </nav>
+
+        <div class="lang-switcher">
+            <button class="lang-btn active" id="btn-tr" onclick="setLanguage('tr')">TR</button>
+            <span style="opacity:.3">/</span>
+            <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+        </div>
+    </div>
+</header>
+
+
+<script>
+/* 1. Navigation Tracker */
+const sections = document.querySelectorAll("section[id]");
+const links = document.querySelectorAll(".nav a");
+
+const observer = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                links.forEach(link => {
+                    link.classList.toggle(
+                        "active",
+                        link.getAttribute("href") === "#" + entry.target.id
+                    );
+                });
+            }
+        });
+    },
+    { threshold: 0.35 }
+);
+sections.forEach(section => observer.observe(section));
+
+/* 2. Proje Akordeon */
+const projectItems = document.querySelectorAll(".project-item");
+projectItems.forEach(item => {
+    const btn = item.querySelector(".project");
+    btn.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+        projectItems.forEach(i => i.classList.remove("open"));
+        if(!isOpen) {
+            item.classList.add("open");
+        }
+    });
+});
+
+/* 3. Dil Desteği (TR / EN) */
+const translations = {
+    tr: {
+        navHome: "ANA SAYFA",
+        navAbout: "HAKKIMDA",
+        navProjects: "PROJELER",
+        navZer: "ZER",
+        navContact: "İLETİŞİM",
+        heroTopLeft: "YAZILIM / AĞ / TEKNOLOJİ",
+        heroTopRight: "TÜRKİYE MERKEZLİ",
+        aboutLabel: "Hakkımda",
+        aboutTitle: "Build.<br>Connect.<br>Solve.",
+        aboutLead: "Teknolojiyi sadece geliştirmiyor, hayata geçiriyorum.",
+        aboutP1: "Bir problemi dinlemekle başlarım. İhtiyacı analiz eder, uygulanabilir bir çözüm tasarlar, gerektiğinde yazılımını geliştirir ve sistemi sahada hayata geçiririm. Projenin yalnızca teknik tarafında değil, müşteri iletişimi, çözüm sunumu ve satış sürecinde de aktif rol alırım.",
+        aboutP2: "Yazılım geliştirme, network altyapıları ve saha teknolojileri arasında çalışarak; bir sistemin fikir aşamasından kurulumuna, kullanımından ortaya çıkan problemlerin çözümüne kadar uçtan uca sorumluluk almayı hedefliyorum.",
+        aboutP3: "Network tarafında TCP/IP, routing, switching, VLAN, VPN ve ağ altyapıları üzerine çalışırken; sahada PDKS, geçiş kontrol, turnike, kamera, VideoWall ve IoT sistemleriyle gerçek problemlere çözüm üretiyorum.",
+        aboutQuote: "\"Benim için iyi bir çözüm sadece çalışan bir sistem değildir. Doğru problemi çözmeli, sahada çalışmalı, müşterinin ihtiyacını karşılamalı ve sürdürülebilir olmalıdır.\"",
+        infoPhilosophy: "Felsefe",
+        infoFocus: "Odak",
+        infoFocusVal: "Yazılım / Ağ / Saha",
+        infoNetwork: "Ağ",
+        infoField: "Saha & IoT",
+        infoBased: "Konum",
+        infoBasedVal: "Türkiye",
+        projectsLabel: "Seçilmiş İşler",
+        projectsTitle: "Projeler ve yetenekler.",
+        p1Type: "Ağ / IoT",
+        p1Desc: "Personel Devam Kontrol (PDKS) sistemleri; yüz tanıma ve kartlı geçiş terminallerinin ağ altyapı yönetimi.",
+        p2Type: "Web/ masaüstü/ mobil Uygulama",
+        p2Desc: "Müşteri kayıtları, işlem geçmişi, randevu ve servis süreçlerini tek panel üzerinden yöneten,işletmelere özel geliştirilen uçtan uca responsive web yönetim platformu.",
+        p3Type: "Network Infrastructure",
+        p3Desc: "Switch, router, VLAN ve IP tabanlı ağ altyapılarının kurulumu ve yönetimi. IoT, PDKS, güvenlik sistemleri ve saha cihazlarının network entegrasyonu ve teknik sorunlarının çözümü.",
+        p4Type: "solution partner",
+        p4Desc: "Müşteri taleplerinin teknik açıdan değerlendirilmesi, uygun ürün ve çözümlerin belirlenmesi, şartname ve teklif süreçlerinin hazırlanması ve satış öncesi teknik süreçlerin takibi. Teknik bilgi ile müşteri ihtiyaçlarını bir araya getirerek çözüm geliştirmeye odaklanıyorum.",
+        zerLabel: "Firma & Saha",
+        zerPrefix: "Efekan Öztürk Bir",
+        zerSuffix: "Çalışanıdır.",
+        zerDesc: `
+            <p>Zer Sistem benim için yalnızca çalıştığım bir şirket değil; sahayı, müşteriyi ve teknik problemlerin gerçek dünyadaki karşılığını öğrendiğim bir yolculuğun parçası. Bu ailenin içinde network altyapılarından PDKS ve geçiş kontrol sistemlerine, donanım entegrasyonlarından saha operasyonlarına kadar birçok farklı alanda deneyim kazanıyorum.</p>
+            <p>Her projede yalnızca sistemi kurmayı değil; problemi anlamayı, ihtiyacı doğru analiz etmeyi ve uygulanabilir bir çözüm üretmeyi öğreniyorum. Bazen bir switch'in başında, bazen sahada bir cihazın karşısında, bazen de bir müşterinin ihtiyacını dinlerken aynı hikâyenin farklı bir parçasını oluşturuyorum.</p>
+            <p>Zer Sistem ile olan hikâyem; öğrendikçe sorumluluk aldığım, sahada deneyim kazandığım ve teknik bilgimi gerçek problemlere dönüştürmeyi öğrendiğim bir süreç. Bu yolculuğun beni ileride teknik satış, çözüm geliştirme ve proje yönetimi tarafında daha güçlü bir noktaya taşımasını hedefliyorum.</p>
+            <div class="zer-quote">Bazı insanlar size sadece bir iş imkânı sunar, bazıları ise yolunuzu şekillendirir. ZER ailesi benim için ikinci grupta; bildiklerini paylaşması, sorumluluk vermesi ve her yeni adımda bana güvenmesi, Zer Sistem'deki yolculuğumun en değerli parçalarından biri. Bu hikâyenin daha başlangıcında olduğumuzu düşünüyor, önümüzde birlikte öğreneceğimiz ve başaracağımız daha çok şey olduğuna inanıyorum.</div>
+        `,
+        contactLabel: "İletişime Geç",
+        contactTitle: "Birlikte<br>İnşa Edelim.",
+        contactCopy: "© Efekan Öztürk — Tüm Hakları Saklıdır"
+    },
+    en: {
+        navHome: "HOME",
+        navAbout: "ABOUT",
+        navProjects: "PROJECTS",
+        navZer: "ZER",
+        navContact: "CONTACT",
+        heroTopLeft: "SOFTWARE / NETWORK / TECH",
+        heroTopRight: "BASED IN TÜRKİYE",
+        aboutLabel: "About me",
+        aboutTitle: "Build.<br>Connect.<br>Solve.",
+        aboutLead: "I don't just develop technology, I bring it to life.",
+        aboutP1: "I start by listening to the problem. I analyze the requirement, architect a viable solution, build the software when necessary, and deploy the system in the field. I take an active role not only in the technical implementation, but also across client communication, solution presentations, and pre-sales processes.",
+        aboutP2: "Operating across software engineering, network infrastructure, and field technologies; my objective is to take end-to-end ownership—from conceptualization and deployment to lifecycle operation and troubleshooting.",
+        aboutP3: "On the network side, I focus on TCP/IP, routing, switching, VLANs, VPNs, and network architecture; in the field, I engineer real-world solutions involving access control (PDKS), turnstiles, surveillance, VideoWalls, and IoT systems.",
+        aboutQuote: "\"To me, a great solution is not merely a functioning system. It must solve the right problem, perform reliably in the field, satisfy client needs, and remain sustainable.\"",
+        infoPhilosophy: "Philosophy",
+        infoFocus: "Focus",
+        infoFocusVal: "Software / Network / Field",
+        infoNetwork: "Network",
+        infoField: "Field & IoT",
+        infoBased: "Based",
+        infoBasedVal: "Türkiye",
+        projectsLabel: "Selected work",
+        projectsTitle: "Projects & Skills.",
+        p1Type: "Network / IoT",
+        p1Desc: "Access control (PDKS) systems; network infrastructure and integration for facial recognition and RFID terminals.",
+        p2Type: "Web/Desktop/Mobile App",
+        p2Desc: "An end-to-end responsive management platform managing client records, appointment pipelines, and service workflows from a single unified panel.",
+        p3Type: "Network Infrastructure",
+        p3Desc: "Installation and management of switch, router, VLAN, and IP-based network architectures. Field integration and troubleshooting for IoT and security devices.",
+        p4Type: "Solution Partner",
+        p4Desc: "Technical evaluation of client requirements, selecting appropriate hardware/software solutions, RFP preparation, and pre-sales engineering workflows.",
+        zerLabel: "Enterprise & Field",
+        zerPrefix: "Efekan Öztürk Is A",
+        zerSuffix: "Employee.",
+        zerDesc: `
+            <p>For me, Zer Sistem is not just a company I work for; it is part of a journey where I learn about the field, clients, and the real-world impact of technical challenges. Within this family, I gain hands-on experience across multiple areas, from network infrastructures to access control systems and field operations.</p>
+            <p>In every project, I learn not only how to deploy a system, but also how to understand the underlying problem, analyze the requirements accurately, and deliver viable solutions.</p>
+            <p>My journey with Zer Sistem is a continuous process of taking on responsibility, gaining field expertise, and transforming technical knowledge into practical results.</p>
+            <div class="zer-quote">Some people simply offer you a job opportunity, while others shape your path. Evren abi is in that second group for me; his willingness to share knowledge, entrust me with responsibility, and believe in me with every step is one of the most valuable aspects of my journey here.</div>
+        `,
+        contactLabel: "Get in touch",
+        contactTitle: "Let's<br>build.",
+        contactCopy: "© Efekan Öztürk — All Rights Reserved"
+    }
+};
+
+function setLanguage(lang) {
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if(translations[lang] && translations[lang][key]){
+            el.innerHTML = translations[lang][key];
+        }
+    });
+
+    document.getElementById("btn-tr").classList.toggle("active", lang === 'tr');
+    document.getElementById("btn-en").classList.toggle("active", lang === 'en');
+    document.documentElement.lang = lang;
+    localStorage.setItem("preferred_lang", lang);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const initialLang = localStorage.getItem("preferred_lang") || "tr";
+    setLanguage(initialLang);
+});
+</script>
+
+</body>
+</html>
